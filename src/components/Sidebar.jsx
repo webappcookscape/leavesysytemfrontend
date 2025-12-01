@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { X } from "lucide-react";
+import logo from "../assets/cookscape-logo.png";   // ⭐ Add your logo file
 
 const Sidebar = ({ mobileOpen, setMobileOpen }) => {
   const { user, logout } = useContext(AuthContext);
@@ -13,9 +14,9 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
       ? "bg-blue-600 text-white"
       : "text-gray-300 hover:bg-blue-500 hover:text-white";
 
-  /* -------------------------------------------------------
-     ROLE-BASED SIDEBAR MENUS  
-  -------------------------------------------------------- */
+  /* --------------------------------------------
+     ROLE-BASED MENUS
+  --------------------------------------------- */
   const menus = {
     EMPLOYEE: [
       { name: "Request Leave", path: "/employee/request" },
@@ -32,9 +33,6 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
       { name: "Half-Day History", path: "/rh/halfday-history" },
     ],
 
-    /* -------------------------------------------------------
-       UPDATED HR ORDER (YOUR REQUIREMENT)
-    -------------------------------------------------------- */
     HR: [
       { name: "Permission Requests", path: "/hr/perm-requests" },
       { name: "Permission History", path: "/hr/perm-history" },
@@ -60,27 +58,43 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
 
   return (
     <>
-      {/* SIDEBAR DRAWER */}
+      {/* SIDEBAR (Desktop always visible / Mobile Slide Drawer) */}
       <div
-        className={`fixed lg:static top-0 left-0 h-screen w-64 bg-slate-900 text-white shadow-xl 
+        className={`
+          fixed lg:static top-0 left-0 h-screen w-64 bg-slate-900 text-white shadow-xl 
           transform transition-transform duration-300 z-50
           ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
-        {/* HEADER */}
+        {/* HEADER + LOGO */}
         <div className="p-5 border-b border-slate-700 flex justify-between items-center">
-          <div>
-            <h1 className="text-xl font-bold mb-1">People Desk – CookScape</h1>
-            <p className="text-gray-300 text-sm">{user?.name}</p>
-            <p className="text-gray-400 text-xs">{user?.role}</p>
+          <div className="flex items-center gap-3">
+            {/* LOGO */}
+            <img
+              src={logo}
+              alt="CookScape Logo"
+              className="w-10 h-10 rounded-md object-cover"
+            />
+
+            <div>
+              <h1 className="text-lg font-bold">People Desk</h1>
+              <p className="text-gray-300 text-xs">CookScape Interiors</p>
+            </div>
           </div>
 
+          {/* Close button for mobile */}
           <button
             className="lg:hidden text-white"
             onClick={() => setMobileOpen(false)}
           >
             <X size={26} />
           </button>
+        </div>
+
+        {/* USER INFO */}
+        <div className="px-5 py-3 border-b border-slate-700">
+          <p className="text-gray-200 font-medium">{user?.name}</p>
+          <p className="text-gray-400 text-xs mt-1">{user?.role}</p>
         </div>
 
         {/* MENU ITEMS */}
@@ -98,7 +112,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
             </Link>
           ))}
 
-          {/* LOGOUT BUTTON */}
+          {/* LOGOUT */}
           <button
             onClick={logout}
             className="mt-8 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700"
