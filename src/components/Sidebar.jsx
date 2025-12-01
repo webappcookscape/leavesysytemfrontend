@@ -70,7 +70,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
     src={logo}
     alt="CookScape Logo"
     className="w-40 mx-auto object-contain"
-    style={{ maxHeight: "70px" }}
+    style={{ maxHeight: "100px" }}
   />
 
   {/* TEXT BELOW LOGO */}
