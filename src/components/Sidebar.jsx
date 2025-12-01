@@ -67,11 +67,13 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
           <div className="flex items-center gap-3">
 
             {/* ⭐ FULL RECTANGULAR LOGO (NO CROPPING) */}
-            <img
-              src={logo}
-              alt="CookScape Logo"
-              className="w-20 h-12 object-contain" 
-            />
+           <img
+  src={logo}
+  alt="CookScape Logo"
+  className="w-32 h-auto object-contain bg-white p-1 rounded"
+  style={{ maxHeight: "45px" }}
+/>
+
 
             <div>
               <h1 className="text-lg font-bold">People Desk</h1>
