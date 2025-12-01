@@ -62,32 +62,23 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
           ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
-        {/* HEADER + LOGO */}
-        <div className="p-5 border-b border-slate-700 flex justify-between items-center">
-          <div className="flex items-center gap-3">
+       {/* HEADER + LOGO */}
+<div className="p-5 border-b border-slate-700 text-center">
 
-            {/* ⭐ FULL RECTANGULAR LOGO (NO CROPPING) */}
-           <img
-  src={logo}
-  alt="CookScape Logo"
-  className="w-32 h-auto object-contain bg-white p-1 rounded"
-  style={{ maxHeight: "45px" }}
-/>
+  {/* BIG FULL LOGO */}
+  <img
+    src={logo}
+    alt="CookScape Logo"
+    className="w-40 mx-auto object-contain"
+    style={{ maxHeight: "70px" }}
+  />
 
+  {/* TEXT BELOW LOGO */}
+  <h1 className="text-xl font-bold mt-3">People Desk</h1>
+  <p className="text-gray-300 text-sm">CookScape Interiors</p>
 
-            <div>
-              <h1 className="text-lg font-bold">People Desk</h1>
-              <p className="text-gray-300 text-xs">CookScape Interiors</p>
-            </div>
-          </div>
+</div>
 
-          <button
-            className="lg:hidden text-white"
-            onClick={() => setMobileOpen(false)}
-          >
-            <X size={26} />
-          </button>
-        </div>
 
         {/* USER INFO */}
         <div className="px-5 py-3 border-b border-slate-700">
