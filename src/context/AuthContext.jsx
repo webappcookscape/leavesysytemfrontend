@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   });
 
  const login = async ({ employeeId, password }) => {
-  console.log("DEBUG LOGIN PAYLOAD:", { employeeId, password });
 
   const res = await api.post('/auth/login', { employeeId, password });
 
