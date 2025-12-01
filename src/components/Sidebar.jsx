@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { X } from "lucide-react";
-import logo from "../assets/cookscape-logo.png";   // ⭐ Add your logo file
+import logo from "../assets/cookscape-logo.png";
 
 const Sidebar = ({ mobileOpen, setMobileOpen }) => {
   const { user, logout } = useContext(AuthContext);
@@ -11,19 +11,18 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
 
   const isActive = (path) =>
     location.pathname === path
-      ? "bg-blue-600 text-white"
-      : "text-gray-300 hover:bg-blue-500 hover:text-white";
+      ? "bg-white text-[#E30000] font-semibold"
+      : "text-white hover:bg-white/10";
 
-  /* --------------------------------------------
-     ROLE-BASED MENUS
-  --------------------------------------------- */
+  /* ------------------------------
+        ROLE-BASED MENUS
+  ------------------------------ */
   const menus = {
     EMPLOYEE: [
       { name: "Request Leave", path: "/employee/request" },
       { name: "Request Half-Day", path: "/employee/halfday" },
       { name: "Request Permission", path: "/employee/permission" },
     ],
-
     RH: [
       { name: "Leave Requests", path: "/rh/today-requests" },
       { name: "Leave History", path: "/rh/today-history" },
@@ -32,7 +31,6 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
       { name: "Half-Day Requests", path: "/rh/halfday-requests" },
       { name: "Half-Day History", path: "/rh/halfday-history" },
     ],
-
     HR: [
       { name: "Permission Requests", path: "/hr/perm-requests" },
       { name: "Permission History", path: "/hr/perm-history" },
@@ -47,7 +45,6 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
       { name: "Leave Report", path: "/hr/report" },
       { name: "Half-Day Report", path: "/hr/halfday-report" },
     ],
-
     ADMIN: [
       { name: "Manage Users", path: "/admin/users" },
       { name: "System Logs", path: "/admin/logs" },
@@ -58,18 +55,17 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
 
   return (
     <>
-      {/* SIDEBAR (Desktop always visible / Mobile Slide Drawer) */}
       <div
         className={`
-          fixed lg:static top-0 left-0 h-screen w-64 bg-slate-900 text-white shadow-xl 
+          fixed lg:static top-0 left-0 h-screen w-64 
+          bg-[#E30000] text-white shadow-xl
           transform transition-transform duration-300 z-50
           ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
-        {/* HEADER + LOGO */}
-        <div className="p-5 border-b border-slate-700 flex justify-between items-center">
+        {/* HEADER */}
+        <div className="p-5 border-b border-white/20 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            {/* LOGO */}
             <img
               src={logo}
               alt="CookScape Logo"
@@ -77,12 +73,14 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
             />
 
             <div>
-              <h1 className="text-lg font-bold">People Desk</h1>
-              <p className="text-gray-300 text-xs">CookScape Interiors</p>
+              <h1 className="text-lg font-bold leading-tight">People Desk</h1>
+              <p className="text-white/70 text-xs leading-tight">
+                CookScape Interiors
+              </p>
             </div>
           </div>
 
-          {/* Close button for mobile */}
+          {/* Mobile close button */}
           <button
             className="lg:hidden text-white"
             onClick={() => setMobileOpen(false)}
@@ -91,10 +89,10 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
           </button>
         </div>
 
-        {/* USER INFO */}
-        <div className="px-5 py-3 border-b border-slate-700">
-          <p className="text-gray-200 font-medium">{user?.name}</p>
-          <p className="text-gray-400 text-xs mt-1">{user?.role}</p>
+        {/* USER INFO BOX (smooth, subtle) */}
+        <div className="px-5 py-4 bg-[#b80000]/40 border-b border-white/20">
+          <p className="text-white font-medium">{user?.name}</p>
+          <p className="text-white/70 text-xs mt-1">{user?.role}</p>
         </div>
 
         {/* MENU ITEMS */}
@@ -104,7 +102,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
               key={item.path}
               to={item.path}
               onClick={() => setMobileOpen(false)}
-              className={`block px-4 py-2 rounded-lg text-sm font-medium ${isActive(
+              className={`block px-4 py-2 rounded-lg text-sm transition ${isActive(
                 item.path
               )}`}
             >
@@ -112,10 +110,10 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
             </Link>
           ))}
 
-          {/* LOGOUT */}
+          {/* LOGOUT BUTTON */}
           <button
             onClick={logout}
-            className="mt-8 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700"
+            className="mt-8 w-full bg-[#004B37] hover:bg-green-900 text-white py-2 rounded-lg"
           >
             Logout
           </button>
